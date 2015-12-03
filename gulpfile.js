@@ -18,10 +18,6 @@ gulp.task('source', function(){
         .pipe(browserSync.reload({stream: true}));
 });
 
-gulp.task('test', function(){
-    gulp.src('app.js')
-        .pipe(gulp.dest(dist));
-});
 
 gulp.task('watch', function () {
     //gulp.watch('src/**/*.less', ['styles']);

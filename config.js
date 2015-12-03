@@ -1,0 +1,1 @@
+db: 'mongodb://127.0.0.1/fun_quzi_dev'
