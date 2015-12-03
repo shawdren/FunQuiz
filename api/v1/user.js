@@ -1,6 +1,6 @@
 var _            = require('lodash');
-//var eventproxy   = require('eventproxy');
-//var userProxy    = require('../../proxy').User;
+var userProxy    = require('../../proxy').User;
+//var moudels = require('../../models');
 /*
 var create = function (req, res, next) {
   userProxy.newAndSave(req.body.name, req.body.loginName, req.body.pass, 
@@ -11,6 +11,7 @@ var create = function (req, res, next) {
   });
 };
 */
+//userProxy.newAndSave('admin','admin','password','admin@test.com',function(){console.log('insert data to db');});
 var show = function (req, res, next) {
   res.send({data: {name:'dino',email:'admin@123.com'}});
 };
