@@ -1,13 +1,13 @@
 var mongoose  = require('mongoose');
 var BaseModel = require("./base_model");
 var Schema    = mongoose.Schema;
-var utility   = require('utility');
 
 var UserSchema = new Schema({
   name: { type: String},
-  loginname: { type: String},
+  loginName: { type: String},
   pass: { type: String },
-  email: { type: String}
+  email: { type: String},
+  accessToken: { type: String}
 });
 
 UserSchema.plugin(BaseModel);
