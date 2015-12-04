@@ -1,5 +1,6 @@
 //var webRouter = require('./web_router');
-var apiRouterV1 = require('./api_router_v1');
+var apiRouterV1 = require('./router/api_router_v1');
+var webRouter = require('./router/web_router');
 var express = require('express');
 var cors = require('cors');
 var app = express();
@@ -8,6 +9,7 @@ var logger = require('./common/logger');
 
 // routes
 app.use('/api/v1', cors(), apiRouterV1);
+app.use('/', webRouter);
 //app.use('/', webRouter);
 
 /*

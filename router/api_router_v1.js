@@ -1,6 +1,6 @@
 var express           = require('express');
-var userController    = require('./api/v1/user');
-var config            = require('./config');
+var userController    = require('../api/v1/user');
+var config            = require('../config');
 
 var router            = express.Router();
 
