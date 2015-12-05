@@ -25,6 +25,7 @@ if (config.debug) {
 }
 */
 app.listen(config.port, function () {
+ 
   logger.log('Fun Quiz listening on port', config.port);
   logger.log('God bless love....');
   logger.log('You can debug your app with http://' + config.host + ':' + config.port);
