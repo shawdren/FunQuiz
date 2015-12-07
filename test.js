@@ -25,5 +25,9 @@ exports.smallSave = function (err) {
   });
 };
 
+exports.getTanks = function(){
+  console.log(Tank.find());
+};
+
 
 //Tank.find({ size: 'small' });

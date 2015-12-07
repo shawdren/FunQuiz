@@ -12,8 +12,10 @@ var create = function (req, res, next) {
 };
 */
 userProxy.newAndSave('admin','admin','password','admin@test.com',function(){console.log('insert data to db');});
-userProxy.getUsers();
+//userProxy.getUsers();
 var show = function (req, res, next) {
-  res.send({data: {name:'dino',email:'admin@123.com'}});
+  userProxy.getUsers(function(err,users){
+      res.send(users);  
+  });
 };
 exports.show = show;

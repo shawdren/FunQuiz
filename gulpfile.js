@@ -13,7 +13,18 @@ var nodemon = require('gulp-nodemon');
 
 var option = {base: 'views'};
 var dist = __dirname + '/dist';
+var exec = require('child_process').exec;
 
+function runCommand(command) {
+  return function (cb) {
+    exec(command, function (err, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+      cb(err);
+    });
+  }
+}
+gulp.task('start-mongo', runCommand('mongod --dbpath C:/Data/db'));
 gulp.task('source', function(){
     gulp.src('views/**/**/*.!(less)')
         .pipe(gulp.dest(dist))
@@ -94,4 +105,8 @@ gulp.task('server', function () {
 
 gulp.task('testMongo',function(){
     test.smallSave();
+});
+
+gulp.task('getTank',function(){
+    test.getTanks();
 });
