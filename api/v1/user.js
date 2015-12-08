@@ -11,7 +11,7 @@ var create = function (req, res, next) {
   });
 };
 */
-userProxy.newAndSave('admin','admin','password','admin@test.com',function(){console.log('insert data to db');});
+//userProxy.newAndSave('admin','admin','password','admin@test.com',function(){console.log('insert data to db');});
 //userProxy.getUsers();
 var show = function (req, res, next) {
   userProxy.getUsers(function(err,users){
