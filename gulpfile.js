@@ -83,13 +83,15 @@ gulp.task('clean', function (cb) {
 =            Globs            =
 =============================*/
 
+
 var GLOBS = {};
-GLOBS.core                  = ['src/js/core/**/*.js', 'src/js/mobile-angular-ui.core.js'];
-GLOBS.components            = ['src/js/components/**/*.js', 'src/js/mobile-angular-ui.components.js'];
+GLOBS.core                  = ['bower_components/fastclick/lib/fastclick.js', 'src/js/core/**/*.js', 'src/js/mobile-angular-ui.core.js'];
+GLOBS.components            = ['bower_components/overthrow/src/overthrow-detect.js', 'bower_components/overthrow/src/overthrow-init.js', 'bower_components/overthrow/src/overthrow-polyfill.js', 'src/js/components/**/*.js', 'src/js/mobile-angular-ui.components.js'];
 GLOBS.gestures              = ['src/js/gestures/**/*.js', 'src/js/mobile-angular-ui.gestures.js'];
 GLOBS.migrate               = ['src/js/migrate/**/*.js', 'src/js/mobile-angular-ui.migrate.js'];
 GLOBS.main                  = GLOBS.core.concat(GLOBS.components).concat('src/js/mobile-angular-ui.js');
-//GLOBS.fonts                 = 'bower_components/font-awesome/fonts/fontawesome-webfont.*';
+GLOBS.fonts                 = 'bower_components/font-awesome/fonts/fontawesome-webfont.*';
+GLOBS.vendorLess            = [ path.resolve(__dirname, 'src/less'), path.resolve(__dirname, 'bower_components') ];
 
 
 /*======================================================================
@@ -193,7 +195,7 @@ gulp.task('clean', function (cb) {
 });
 
 gulp.task('build', function(done) {
-  seq('clean', ['fonts', 'css',  'js'], done);
+  seq( 'fonts', ['css',  'js'], done);
 });
 
 

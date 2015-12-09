@@ -1,0 +1,41 @@
+{
+  "name": "fun-quiz",
+  "homepage": "https://github.com/shawdren/funquiz",
+  "authors": [
+    ""
+  ],
+  "description": "the fun quiz",
+  "main": [
+    "dist/css/mobile-angular-ui-hover.css",
+    "dist/css/mobile-angular-ui-base.css",
+    "dist/css/mobile-angular-ui-desktop.css",
+    "dist/js/mobile-angular-ui.js",
+    "dist/js/mobile-angular-ui.gestures.js",
+    "dist/fonts/fontawesome-webfont.eot",
+    "dist/fonts/fontawesome-webfont.svg",
+    "dist/fonts/fontawesome-webfont.ttf",
+    "dist/fonts/fontawesome-webfont.woff"
+  ],
+  "keywords": [
+    "mobile-angular-ui",
+    "angularjs",
+    "boostrap3",
+    "angular-mobile",
+    "mobile-ui",
+    "boostrap3-mobile"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "ROADMAP.tasks"
+  ],
+  "devDependencies": {
+    "font-awesome": "4",
+    "bootstrap": "3",
+    "fastclick": "1",
+    "overthrow": "0.7"
+  }
+}

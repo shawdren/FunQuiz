@@ -8,7 +8,7 @@ var config = require('./config');
 var logger = require('./common/logger');
 var path = require('path');
 // routes
-var staticDir = path.join(__dirname, 'app');
+var staticDir = path.join(__dirname, 'dist');
 app.use('/dist', express.static(staticDir));
 app.use('/api/v1', cors(), apiRouterV1);
 app.use('/', webRouter);
