@@ -29,7 +29,11 @@ gulp.task('source', function(){
 
 gulp.task('watch', function () {
     //gulp.watch('src/**/*.less', ['styles']);
-    gulp.watch('views/app/**/*.{html,js}', ['source'], function () {
+    gulp.watch(['views/app/**/*.{html,js}',
+                'api/v1/*.{js}',
+                'proxy/*.{js}',
+                'models/*.{js}',
+                'route/*.{js}'], ['source'], function () {
         browserSync.reload();
     });
 }); 
