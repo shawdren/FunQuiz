@@ -1,9 +1,10 @@
 var express           = require('express');
-var userController    = require('../api/v1/user');
+var apiUser    = require('../api/v1/user');
 var config            = require('../config');
 
 var router            = express.Router();
 
-router.get('/user', userController.show);
+router.get('/user', apiUser.show);
+router.post('/user/login', apiUser.login);
 
 module.exports = router;

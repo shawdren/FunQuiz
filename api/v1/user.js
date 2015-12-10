@@ -18,4 +18,11 @@ var show = function (req, res, next) {
       res.send(users);  
   });
 };
+
 exports.show = show;
+
+var login = function (req, res, next) {
+    res.send("ok");
+};
+
+exports.login = login;
