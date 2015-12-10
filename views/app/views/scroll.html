@@ -1,5 +1,5 @@
 <div ui-content-for="title">
-  <span>Scroll</span>
+  <span ng-bind="listCtrl.titleContent"></span>
 </div>
 
 <div class="scrollable" ui-state="searchBar">
@@ -9,10 +9,10 @@
     class="form-control scrollable-header"
     placeholder="Search.." />
 
-  <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
+  <div class="scrollable-content">
     <div class="list-group">
-      <a ng-repeat="item in scrollItems" href="#" class="list-group-item">
-        {{ item }} <i class="fa fa-chevron-right pull-right"></i>
+      <a ng-repeat="item in listCtrl.scrollItems" href="/#test/{{ item.id }}" class="list-group-item">
+        {{ item.type }} <i class="fa fa-chevron-right pull-right"></i>
       </a>
     </div>
   </div>

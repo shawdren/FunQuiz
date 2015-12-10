@@ -124,6 +124,11 @@ gulp.task('css:concat', function() {
   .pipe(gulp.dest(path.join('dist', 'css')));
 });
 
+gulp.task('css:style',function(){
+  return gulp.src('src/less/style.css').
+    pipe(gulp.dest(path.join('dist', 'css')));
+});
+
 gulp.task('css:copy', function() {
   return gulp.src([
     path.join(CSS_TEMP_DIR, 'mobile-angular-ui-hover.css'),
@@ -141,7 +146,7 @@ gulp.task('css:minify', function() {
 });
 
 gulp.task('css', function(done) {
-  seq('css:less', 'css:concat', 'css:copy', 'css:minify', done);
+  seq('css:style','css:less', 'css:concat', 'css:copy', 'css:minify', done);
 });
 
 /*====================================================================
