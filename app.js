@@ -7,9 +7,14 @@ var app = express();
 var config = require('./config');
 var logger = require('./common/logger');
 var path = require('path');
+var bodyParser = require('body-parser');
 // routes
 var staticDir = path.join(__dirname, 'dist');
 app.enable('trust proxy');
+
+app.use(bodyParser.json({limit: '1mb'}));
+app.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }));
+
 app.use('/dist', express.static(staticDir));
 app.use('/api/v1', cors(), apiRouterV1);
 app.use('/', webRouter);

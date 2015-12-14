@@ -3,8 +3,8 @@ var User    = models.User;
 var uuid    = require('node-uuid');
 
 
-exports.getUsers = function(callback){
-  User.find(callback);
+exports.getUserByMail = function (email, callback) {
+  User.findOne({email: email}, callback);
 };
 
 exports.register = function (email,pass,callback) {

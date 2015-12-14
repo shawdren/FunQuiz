@@ -24,7 +24,23 @@ exports.show = show;
 
 var login = function (req, res, next) {
   var d = {};
-  d.status.code = '200';
+  if (help.isEmpty(req.body.email)) {
+    res.send(help.require(req.body.email));
+  }
+  if (help.isEmpty(req.body.password)) {
+    res.send(help.require(req.body.password));
+  }
+  userProxy.getUserByMail(req.body.email, function (err, user) {
+    if (err != null) {
+      d.status = help.fail(err);
+    }
+    if (user.pass === req.body.password) {
+      d.status = help.success();
+      d.data = user;
+    } else {
+      d.status = help.fail(err);
+    }
+  })
   res.send(d);
 };
 
@@ -32,14 +48,14 @@ exports.login = login;
 
 var register = function (req, res, next) {
   var d = {};
-  if (req.params.email === '') {
-    res.send(help.require(req.email));
+  if (help.isEmpty(req.body.email)) {
+    res.send(help.require(req.body.email));
   }
-  if (req.params.password === '') {
-    res.send(help.require(req.password));
+  if (help.isEmpty(req.body.password)) {
+    res.send(help.require(req.body.password));
   }
-  userProxy.register(req.email, req.password, function (err, users) {
-    if(err != null){
+  userProxy.register(req.body.email, req.body.password, function (err, users) {
+    if (err != null) {
       d.status = help.fail(err);
     }
     d.status = help.success();

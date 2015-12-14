@@ -12,3 +12,7 @@ exports.fail = function (err) {
 	var status = { code: '280', message: '', error: err };
 	return status;
 }
+
+exports.isEmpty = function (str) {
+    return (!str || 0 === str.length);
+}
