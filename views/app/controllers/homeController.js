@@ -16,6 +16,7 @@ var app = angular.module('FunQuiz', [
     $routeProvider.when('/test/:id', { templateUrl: 'test.html', reloadOnSearch: false, controller: 'TestController as testCtrl' });
     $routeProvider.when('/result', { templateUrl: 'result.html', reloadOnSearch: false, controller: 'ResultController as resultCtrl' });
     $routeProvider.when('/login', { templateUrl: 'login.html', reloadOnSearch: false, controller: 'UserController as userCtrl' });
+    $routeProvider.when('/alert', { templateUrl: 'alert.html', reloadOnSearch: false, controller: 'AlertController as alertCtrl' });
   });
 
 

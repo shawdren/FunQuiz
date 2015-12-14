@@ -3,6 +3,11 @@ exports.require = function (filedName) {
 	return status;
 }
 
+exports.login = function (message) {
+	var status = { code: '282', message: message };
+	return status;
+}
+
 exports.success = function () {
 	var status = { code: '200', message: '' };
 	return status;

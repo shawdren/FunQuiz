@@ -33,15 +33,16 @@ var login = function (req, res, next) {
   userProxy.getUserByMail(req.body.email, function (err, user) {
     if (err != null) {
       d.status = help.fail(err);
+      res.send(d);
     }
     if (user.pass === req.body.password) {
       d.status = help.success();
       d.data = user;
     } else {
-      d.status = help.fail(err);
+      d.status = help.login('password is incorrect!');
     }
+    res.send(d);
   })
-  res.send(d);
 };
 
 exports.login = login;
