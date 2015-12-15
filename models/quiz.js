@@ -21,4 +21,4 @@ QuizSchema.plugin(BaseModel);
 
 QuizSchema.index({email: 1}, {unique: true});
 
-mongoose.model('Quzi', QuizSchema);
+mongoose.model('Quiz', QuizSchema);
