@@ -18,11 +18,7 @@ var UserSchema = new Schema({
 
 UserSchema.plugin(BaseModel);
 
-<<<<<<< HEAD
-//UserSchema.index({loginname: 1}, {unique: true});
-//UserSchema.index({email: 1}, {unique: true});
-=======
 UserSchema.index({email: 1}, {unique: true});
->>>>>>> origin/master
+
 
 mongoose.model('User', UserSchema);

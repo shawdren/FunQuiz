@@ -35,6 +35,10 @@ var login = function (req, res, next) {
       d.status = help.fail(err);
       res.send(d);
     }
+    if(!user){
+      d.status = help.login('user does not exists!');
+      res.send(d);
+    }
     if (user.pass === req.body.password) {
       d.status = help.success();
       d.data = user;

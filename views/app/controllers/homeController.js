@@ -11,7 +11,7 @@ var app = angular.module('FunQuiz', [
     window.$transform = $transform;
   });
   app.config(function ($routeProvider) {
-    $routeProvider.when('/', { templateUrl: 'home.html', reloadOnSearch: false });
+    $routeProvider.when('/', { templateUrl: 'home.html', reloadOnSearch: false , controller: 'MainController as homeCtrl' });
     $routeProvider.when('/home', { templateUrl: 'home.html', reloadOnSearch: false, controller: 'MainController as homeCtrl' });
     $routeProvider.when('/list/:type', { templateUrl: 'category.html', reloadOnSearch: false, controller: 'ListController as listCtrl' });
     $routeProvider.when('/test/:id', { templateUrl: 'test.html', reloadOnSearch: false, controller: 'TestController as testCtrl' });
@@ -23,6 +23,7 @@ var app = angular.module('FunQuiz', [
 
   app.controller('MainController', function ($rootScope, $scope, $routeParams, $location, userService) {
     var self = this;
+    self.user = userService.user;
     self.beginTest = function () {
       $location.path('/test/1');
     };

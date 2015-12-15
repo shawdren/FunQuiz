@@ -17,11 +17,11 @@
 				});
 				*/
 			$http.post(baseHost + "/api/v1/user/login", data)
-				.success(function (data) {
-					self.user = data.user;
-					callback(data);
+				.success(function (user) {
+					self.user = user.data;
+					callback(user);
 				})
-				.error(function (data) {
+				.error(function (user) {
 					console.error("Failed to save.");
 				});
 		   
@@ -29,11 +29,11 @@
 		self.register = function(email, password, callback){
 			var data = {email:email, password: password};
 			$http.post(baseHost + "/api/v1/user/register", data)
-				.success(function (data) {
-					self.user = data.user;
-					callback(data);
+				.success(function (user) {
+					self.user = user.data;
+					callback(user);
 				})
-				.error(function (data) {
+				.error(function (user) {
 					console.error("Failed to save.");
 				});
 			
