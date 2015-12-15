@@ -12,6 +12,7 @@ var app = angular.module('FunQuiz', [
   });
   app.config(function ($routeProvider) {
     $routeProvider.when('/', { templateUrl: 'home.html', reloadOnSearch: false });
+    $routeProvider.when('/home', { templateUrl: 'home.html', reloadOnSearch: false, controller: 'MainController as homeCtrl' });
     $routeProvider.when('/list/:type', { templateUrl: 'category.html', reloadOnSearch: false, controller: 'ListController as listCtrl' });
     $routeProvider.when('/test/:id', { templateUrl: 'test.html', reloadOnSearch: false, controller: 'TestController as testCtrl' });
     $routeProvider.when('/result', { templateUrl: 'result.html', reloadOnSearch: false, controller: 'ResultController as resultCtrl' });
@@ -20,8 +21,11 @@ var app = angular.module('FunQuiz', [
   });
 
 
-  app.controller('MainController', function ($rootScope, $scope, $routeParams) {
-
+  app.controller('MainController', function ($rootScope, $scope, $routeParams, $location, userService) {
+    var self = this;
+    self.beginTest = function () {
+      $location.path('/test/1');
+    };
     console.log($routeParams);
     // Needed for the loading screen
     $rootScope.$on('$routeChangeStart', function () {
