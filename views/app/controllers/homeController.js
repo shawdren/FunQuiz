@@ -1,10 +1,10 @@
-  var app = angular.module('FunQuiz', [
-    'ngRoute',
-    'mobile-angular-ui',
-    'mobile-angular-ui.gestures',
-    'mobile-angular-ui.core.sharedState'
-  ]);
-  
+var app = angular.module('FunQuiz', [
+  'ngRoute',
+  'mobile-angular-ui',
+  'mobile-angular-ui.gestures',
+  'mobile-angular-ui.core.sharedState'
+]);
+
 (function () {
 
   app.run(function ($transform) {
@@ -12,15 +12,20 @@
   });
   app.config(function ($routeProvider) {
     $routeProvider.when('/', { templateUrl: 'home.html', reloadOnSearch: false });
+    $routeProvider.when('/home', { templateUrl: 'home.html', reloadOnSearch: false, controller: 'MainController as homeCtrl' });
     $routeProvider.when('/list/:type', { templateUrl: 'category.html', reloadOnSearch: false, controller: 'ListController as listCtrl' });
     $routeProvider.when('/test/:id', { templateUrl: 'test.html', reloadOnSearch: false, controller: 'TestController as testCtrl' });
     $routeProvider.when('/result', { templateUrl: 'result.html', reloadOnSearch: false, controller: 'ResultController as resultCtrl' });
     $routeProvider.when('/login', { templateUrl: 'login.html', reloadOnSearch: false, controller: 'UserController as userCtrl' });
+    $routeProvider.when('/alert', { templateUrl: 'alert.html', reloadOnSearch: false, controller: 'AlertController as alertCtrl' });
   });
 
 
-  app.controller('MainController', function ($rootScope, $scope, $routeParams) {
-
+  app.controller('MainController', function ($rootScope, $scope, $routeParams, $location, userService) {
+    var self = this;
+    self.beginTest = function () {
+      $location.path('/test/1');
+    };
     console.log($routeParams);
     // Needed for the loading screen
     $rootScope.$on('$routeChangeStart', function () {
