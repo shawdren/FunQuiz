@@ -2,8 +2,9 @@ var _ = require('lodash');
 var quizProxy = require('../../proxy').Quiz;
 var help = require('../../common/helper');
 
+ 
 
-var getQuiz = function (req, res, next) {
+exports.get = function (req, res, next) {
   var d = {};
   quizProxy.getQuiz(req.body.query, function (err, quiz) {
     if (err != null) {
@@ -13,15 +14,15 @@ var getQuiz = function (req, res, next) {
     d.data = quiz;
     res.send(d);
   });
-};
+};;
 
-exports.getQuiz = getQuiz;
-
-var addQuiz = function (req, res, next) {
+var add = function (req, res, next) {
   var d = {};
-  quizProxy.addQuiz(req.body.query, function (err, quiz) {
+  quizProxy.addQuiz(req.body.quiz, req.body.answer, req.body.rightAnswer, req.body.category, function (err, quiz) {
     if (err != null) {
       d.status = help.fail(err);
+      res.send(d);
+      return;
     }
     d.status = help.success();
     d.data = quiz;
@@ -29,33 +30,4 @@ var addQuiz = function (req, res, next) {
   });
 };
 
-exports.addQuiz = addQuiz;
-
-var deleteQuiz = function (req, res, next) {
-  var d = {};
-  quizProxy.deleteQuiz(req.body.query, function (err, quiz) {
-    if (err != null) {
-      d.status = help.fail(err);
-    }
-    d.status = help.success();
-    d.data = quiz;
-    res.send(d);
-  });
-};
-
-exports.deleteQuiz = deleteQuiz;
-
-var updateQuiz = function (req, res, next) {
-  var d = {};
-  quizProxy.updateQuiz(req.body.query, function (err, quiz) {
-    if (err != null) {
-      d.status = help.fail(err);
-    }
-    d.status = help.success();
-    d.data = quiz;
-    res.send(d);
-  });
-};
-
-exports.updateQuiz = updateQuiz;
-
+exports.add = add;

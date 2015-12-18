@@ -19,6 +19,6 @@ var QuizSchema = new Schema({
 
 QuizSchema.plugin(BaseModel);
 
-QuizSchema.index({email: 1}, {unique: true});
+QuizSchema.index({quiz: 1}, {unique: true});
 
 mongoose.model('Quiz', QuizSchema);

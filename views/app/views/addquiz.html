@@ -2,11 +2,45 @@
   <span>add quiz</span>
 </div>
 
-<div class="scrollable" ui-state="searchBar">
-  <div class="scrollable-content">
-    <div class="list-group">
-      
-      
-    </div>
+<div class="scrollable">
+  <div class="scrollable-content section">
+
+    <form role="form">
+      <fieldset>
+        <legend>我来出题</legend>
+        <div class="form-group has-success has-feedback">
+          <label>问题</label>
+          <input type="text" ng-model="quizCtrl.quiz" class="form-control" placeholder="输入问题">
+        </div>
+
+        <div class="form-group has-success has-feedback">
+          <label>答案</label>
+          <input type="text" ng-model="quizCtrl.answer1" class="form-control" placeholder="输入答案">
+          <input type="text" ng-model="quizCtrl.answer2" class="form-control" placeholder="输入答案">
+          <input type="text" ng-model="quizCtrl.answer3" class="form-control" placeholder="输入答案">
+          <input type="text" ng-model="quizCtrl.answer4" class="form-control" placeholder="输入答案">
+        </div>
+
+        <div class="form-group has-success has-feedback">
+          <label>正确答案</label>
+          <input type="text" ng-model="quizCtrl.rightAnswer" class="form-control" placeholder="输入答案">
+        </div>
+
+        <div class="form-group has-success has-feedback">
+          <label>分类</label>
+          <select ng-model="quizCtrl.category"  class="form-control">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+          </select>
+        </div>
+      </fieldset>
+      <hr>
+
+      <button class="btn btn-primary btn-block" ng-click='quizCtrl.save()'> 
+        提交
+      </button>
+    </form>
   </div>
 </div>
