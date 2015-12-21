@@ -25,10 +25,10 @@ exports.show = show;
 var login = function (req, res, next) {
   var d = {};
   if (help.isEmpty(req.body.email)) {
-    res.send(help.require(req.body.email));
+    res.send(help.require('email'));
   }
   if (help.isEmpty(req.body.password)) {
-    res.send(help.require(req.body.password));
+    res.send(help.require('password'));
   }
   userProxy.getUserByMail(req.body.email, function (err, user) {
     if (err != null) {
@@ -54,10 +54,10 @@ exports.login = login;
 var register = function (req, res, next) {
   var d = {};
   if (help.isEmpty(req.body.email)) {
-    res.send(help.require(req.body.email));
+    res.send(help.require('email'));
   }
   if (help.isEmpty(req.body.password)) {
-    res.send(help.require(req.body.password));
+    res.send(help.require('password'));
   }
   userProxy.register(req.body.email, req.body.password, function (err, users) {
     if (err != null) {

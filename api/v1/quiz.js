@@ -2,7 +2,7 @@ var _ = require('lodash');
 var quizProxy = require('../../proxy').Quiz;
 var help = require('../../common/helper');
 
- 
+
 
 exports.get = function (req, res, next) {
   var d = {};
@@ -18,7 +18,16 @@ exports.get = function (req, res, next) {
 
 var add = function (req, res, next) {
   var d = {};
-  quizProxy.addQuiz(req.body.quiz, req.body.answer, req.body.rightAnswer, req.body.category, function (err, quiz) {
+  if (help.isEmpty(req.body.quiz)) {
+    res.send(help.require('quiz'));
+  }
+  if (req.body.answer.length == 0) {
+    res.send(help.require('answer'));
+  }
+  if (help.isEmpty(req.body.rightAnswer)) {
+    res.send(help.require('right answer'));
+  }
+  quizProxy.addQuiz(req.body.quiz, req.body.answer, req.body.rightAnswer, req.body.category, req.body.tag, function (err, quiz) {
     if (err != null) {
       d.status = help.fail(err);
       res.send(d);
@@ -31,3 +40,18 @@ var add = function (req, res, next) {
 };
 
 exports.add = add;
+
+exports.update = function (req, res, next) {
+  var d = {};
+  if (help.isEmpty(req.body.quizId)) {
+    res.send(help.require('quizId'));
+  }
+  quizProxy.updateQuiz(req.body.query, function (err, quiz) {
+    if (err != null) {
+      d.status = help.fail(err);
+    }
+    d.status = help.success();
+    d.data = quiz;
+    res.send(d);
+  });
+};;
