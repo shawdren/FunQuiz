@@ -80,8 +80,10 @@ var app = angular.module('FunQuiz', [
       self.index = 0;
       self.result = 0;
       self.chooseAnwser = function (x, y, z) {
+        var isRight = false;
         if (x == y.right) {
           self.result++;
+          isRight = true;
         }
         if (self.index === quiz.length - 1) {
           var score = {};
@@ -89,6 +91,11 @@ var app = angular.module('FunQuiz', [
           quizService.score = score;
           $location.path('result');
         }
+        quizService.updateQuiz(y.quizId, isRight, function (d) { });
+
+        if (!userService.user.email) {
+          userService.updateQuiz(userService.user.email, isRight, function (d) { });
+        };
         self.index++;
         self.testItem = quiz[self.index];
       };

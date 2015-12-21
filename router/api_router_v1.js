@@ -8,7 +8,7 @@ var router            = express.Router();
 router.get('/user', apiUser.show);
 router.post('/user/login', apiUser.login);
 router.post('/user/register', apiUser.register);
-router.post('/quiz/updatequiz', apiQuiz.updateQuiz);
+router.post('/user/updatequiz', apiUser.updateQuiz);
 
 router.get('/quiz/get', apiQuiz.get);
 router.get('/quiz/getall', apiQuiz.getAll);

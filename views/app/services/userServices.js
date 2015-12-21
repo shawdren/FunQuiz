@@ -42,7 +42,7 @@
 			var data = {};
 			data.quizId = quizId;
 			data.isRight = isRight;
-			$http.post(baseHost + "/api/v1/quiz/updatequiz", data)
+			$http.post(baseHost + "/api/v1/user/updatequiz", data)
 				.success(function (quiz) {
 					self.quiz = quiz.data;
 					callback(quiz);
