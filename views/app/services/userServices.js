@@ -38,9 +38,9 @@
 				});
 
 		};
-		self.updateQuiz = function (quizId, isRight, callback) {
+		self.updateQuiz = function (email, isRight, callback) {
 			var data = {};
-			data.quizId = quizId;
+			data.email = email;
 			data.isRight = isRight;
 			$http.post(baseHost + "/api/v1/user/updatequiz", data)
 				.success(function (quiz) {

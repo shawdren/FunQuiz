@@ -2,6 +2,9 @@ var models = require('../models');
 var User = models.User;
 var uuid = require('node-uuid');
 
+exports.getAll = function (query, callback) {
+  User.find(query, '', {}, callback);
+};
 
 exports.getUserByMail = function (email, callback) {
   User.findOne({ email: email }, callback);

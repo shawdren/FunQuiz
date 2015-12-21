@@ -14,9 +14,9 @@ exports.addQuiz = function (quiz, answer, rightAnswer, category, tag, callback) 
   var q = new Quiz();
   q.quiz = quiz;
   q.answer = answer;
-  q.right_anser = rightAnswer;
+  q.right_answer = rightAnswer;
   q.category = category;
-  q.quiz = uuid.v4();
+  q.accessToken = uuid.v4();
   q.tag = tag;
   q.save(callback);
 };

@@ -1,0 +1,42 @@
+<div class="scrollable">
+    <div class="scrollable-content">
+        <div class="list-group text-center">
+            <div class="list-group-item list-group-item-home">
+                <h1>我的信息 <small> {{userCtrl.email}}</small> </h1>
+            </div>
+            <div class="list-group-item list-group-item-home">
+                <div>
+                    <fieldset>
+                        <div>
+                            <p>
+                                <label>总答题数：{{userCtrl.quiz_count}}</label>
+                            </p>
+                            <p>
+                                <label>正确题数：{{userCtrl.right_count}}</label>
+                            </p>
+                            <p>
+                                <label>连胜纪录：{{userCtrl.combo_count}}</label>
+                            </p>
+                            <p>
+                                <label>总分：{{userCtrl.score}}</label>
+                            </p>
+                            <p>
+                                <label>级别：{{userCtrl.level}}</label>
+                            </p>
+                        </div>
+                    </fieldset>
+                </div>
+                <div>
+                    <i class="fa fa-gamepad feature-icon text-primary"></i>
+                </div>
+                <div>
+                    <h3 class="home-heading">休闲来刷题</h3>
+                    <button class="btn btn-primary btn-block" ng-click="userCtrl.beginTest()">
+                        开始
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
