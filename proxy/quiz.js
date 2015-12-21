@@ -7,7 +7,7 @@ exports.getQuiz = function (query, callback) {
 };
 
 exports.getAll = function (query, callback) {
-  Quiz.find({quiz_count:0}, '', {}, callback);
+  Quiz.find(query, '', {}, callback);
 };
 
 exports.addQuiz = function (quiz, answer, rightAnswer, category, tag, callback) {

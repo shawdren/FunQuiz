@@ -5,7 +5,19 @@
 			$location.path('/login');
 		};
 		self.save = function () {
-			var answer = [self.answer1, self.answer2, self.answer3, self.answer4];
+			var answer = [];
+			if(!self.answer1){
+				answer.push(self.answer1);
+			}
+			if(!self.answer2){
+				answer.push(self.answer2);
+			}
+			if(!self.answer3){
+				answer.push(self.answer3);
+			}
+			if(!self.answer4){
+				answer.push(self.answer4);
+			}
 			quizService.add(self.quiz, answer, self.rightAnswer, self.category,self.tag, function (d) {
 				if (d.status.code === '200') {
 					self.reset();

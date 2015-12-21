@@ -74,7 +74,7 @@ var app = angular.module('FunQuiz', [
     quizService.getQuiz({}, function (d) {
       var quiz = [];
       if (d.status.code === '200') {
-        quiz.push(d.data);
+        quiz = d.data;
       }
 
       self.index = 0;
