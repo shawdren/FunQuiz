@@ -10,15 +10,16 @@ var UserSchema = new Schema({
   update_at: { type: Date, default: Date.now },
   quiz_count: { type: Number, default: 0 },
   right_count: { type: Number, default: 0 },
+  combo_count: { type: Number, default: 0 },
   score: { type: Number, default: 0 },
   level: { type: String },
   active: { type: Boolean, default: true },
-  accessToken: {type: String},
+  accessToken: { type: String },
 });
 
 UserSchema.plugin(BaseModel);
 
-UserSchema.index({email: 1}, {unique: true});
+UserSchema.index({ email: 1 }, { unique: true });
 
 
 mongoose.model('User', UserSchema);

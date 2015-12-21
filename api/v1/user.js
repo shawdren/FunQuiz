@@ -34,10 +34,12 @@ var login = function (req, res, next) {
     if (err != null) {
       d.status = help.fail(err);
       res.send(d);
+      return;
     }
-    if(!user){
+    if (!user) {
       d.status = help.login('user does not exists!');
       res.send(d);
+      return;
     }
     if (user.pass === req.body.password) {
       d.status = help.success();
@@ -70,3 +72,18 @@ var register = function (req, res, next) {
 };
 
 exports.register = register;
+
+exports.updateQuiz = function (req, res, next) {
+  var d = {};
+  if (help.isEmpty(req.body.email)) {
+    res.send(help.require('email'));
+  }
+  userProxy.updateQuiz(req.body.email, req.body.isRight, function (err, quiz) {
+    if (err != null) {
+      d.status = help.fail(err);
+    }
+    d.status = help.success();
+    d.data = quiz;
+    res.send(d);
+  });
+};;

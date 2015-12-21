@@ -6,7 +6,11 @@ exports.getQuiz = function (query, callback) {
   Quiz.findOne(query, callback);
 };
 
-exports.addQuiz = function (quiz, answer, rightAnswer, category,tag, callback) {
+exports.getAll = function (query, callback) {
+  Quiz.find({quiz_count:0}, '', {}, callback);
+};
+
+exports.addQuiz = function (quiz, answer, rightAnswer, category, tag, callback) {
   var q = new Quiz();
   q.quiz = quiz;
   q.answer = answer;
@@ -18,7 +22,7 @@ exports.addQuiz = function (quiz, answer, rightAnswer, category,tag, callback) {
 };
 
 exports.updateQuiz = function (quizId, isRight, callback) {
-  
+
   Quiz.findOne({ _id: quizId }, function (err, quiz) {
     if (err || !quiz) {
       return callback(err);

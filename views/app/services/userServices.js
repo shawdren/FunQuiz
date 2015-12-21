@@ -3,7 +3,7 @@
 		var self = this;
 		var baseHost = 'http://' + location.host;
 		self.user = {};
-		self.login = function (email, password,callback) {
+		self.login = function (email, password, callback) {
 			var data = {};
 			data.email = email;
 			data.password = password;
@@ -24,10 +24,10 @@
 				.error(function (user) {
 					console.error("Failed to save.");
 				});
-		   
+
 		};
-		self.register = function(email, password, callback){
-			var data = {email:email, password: password};
+		self.register = function (email, password, callback) {
+			var data = { email: email, password: password };
 			$http.post(baseHost + "/api/v1/user/register", data)
 				.success(function (user) {
 					self.user = user.data;
@@ -36,7 +36,20 @@
 				.error(function (user) {
 					console.error("Failed to save.");
 				});
-			
+
+		};
+		self.updateQuiz = function (quizId, isRight, callback) {
+			var data = {};
+			data.quizId = quizId;
+			data.isRight = isRight;
+			$http.post(baseHost + "/api/v1/quiz/updatequiz", data)
+				.success(function (quiz) {
+					self.quiz = quiz.data;
+					callback(quiz);
+				})
+				.error(function (quiz) {
+					console.error("Failed to save.");
+				});
 		};
 		return self;
 	});

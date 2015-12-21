@@ -25,6 +25,7 @@
 			self.answer4 = '';
 			self.rightAnswer = '';
 			self.category = '';
+			self.tag = '';
 		};
 	});
 })();

@@ -14,7 +14,20 @@ exports.get = function (req, res, next) {
     d.data = quiz;
     res.send(d);
   });
+};
+
+exports.getAll = function (req, res, next) {
+  var d = {};
+  quizProxy.getQuiz(req.body.query, function (err, quiz) {
+    if (err != null) {
+      d.status = help.fail(err);
+    }
+    d.status = help.success();
+    d.data = quiz;
+    res.send(d);
+  });
 };;
+
 
 var add = function (req, res, next) {
   var d = {};
@@ -41,12 +54,12 @@ var add = function (req, res, next) {
 
 exports.add = add;
 
-exports.update = function (req, res, next) {
+exports.updateQuiz = function (req, res, next) {
   var d = {};
   if (help.isEmpty(req.body.quizId)) {
     res.send(help.require('quizId'));
   }
-  quizProxy.updateQuiz(req.body.query, function (err, quiz) {
+  quizProxy.updateQuiz(req.body.quizId,req.body.isRight, function (err, quiz) {
     if (err != null) {
       d.status = help.fail(err);
     }
@@ -54,4 +67,4 @@ exports.update = function (req, res, next) {
     d.data = quiz;
     res.send(d);
   });
-};;
+};

@@ -11,7 +11,7 @@ var app = angular.module('FunQuiz', [
     window.$transform = $transform;
   });
   app.config(function ($routeProvider) {
-    $routeProvider.when('/', { templateUrl: 'home.html', reloadOnSearch: false , controller: 'MainController as homeCtrl' });
+    $routeProvider.when('/', { templateUrl: 'home.html', reloadOnSearch: false, controller: 'MainController as homeCtrl' });
     $routeProvider.when('/home', { templateUrl: 'home.html', reloadOnSearch: false, controller: 'MainController as homeCtrl' });
     $routeProvider.when('/list/:type', { templateUrl: 'category.html', reloadOnSearch: false, controller: 'ListController as listCtrl' });
     $routeProvider.when('/test/:id', { templateUrl: 'test.html', reloadOnSearch: false, controller: 'TestController as testCtrl' });
@@ -19,6 +19,7 @@ var app = angular.module('FunQuiz', [
     $routeProvider.when('/login', { templateUrl: 'login.html', reloadOnSearch: false, controller: 'UserController as userCtrl' });
     $routeProvider.when('/alert', { templateUrl: 'alert.html', reloadOnSearch: false, controller: 'AlertController as alertCtrl' });
     $routeProvider.when('/quiz/add', { templateUrl: 'addquiz.html', reloadOnSearch: false, controller: 'QuizController as quizCtrl' });
+    $routeProvider.when('/about', { templateUrl: 'about.html', reloadOnSearch: false });
   });
 
 
@@ -67,28 +68,33 @@ var app = angular.module('FunQuiz', [
     });
   });
 
-  app.controller('TestController', function ($rootScope, $scope, $routeParams, $location, dataService) {
+  app.controller('TestController', function ($rootScope, $scope, $routeParams, $location, userService, quizService) {
     var self = this;
     self.titleContent = '请选择一个答案';
-    var scrollItems = Questions;
-    self.index = 0;
-    self.result = 0;
-    self.chooseAnwser = function (x, y, z) {
-      if (x == y.right) {
-        self.result++;
+    quizService.getQuiz({}, function (d) {
+      var quiz = [];
+      if (d.status.code === '200') {
+        quiz.push(d.data);
       }
-      if (self.index === scrollItems.length - 1) {
-        //window.alert('正确回答'+self.result+'题');
-        var score = {};
-        score.reuslt = self.result;
-        dataService.dataObj = score;
-        $location.path('result');
-      }
-      self.index++;
-      self.testItem = scrollItems[self.index];
-    };
-    self.testItem = scrollItems[self.index]
-    // Needed for the loading screen
+
+      self.index = 0;
+      self.result = 0;
+      self.chooseAnwser = function (x, y, z) {
+        if (x == y.right) {
+          self.result++;
+        }
+        if (self.index === quiz.length - 1) {
+          var score = {};
+          score.reuslt = self.result;
+          quizService.score = score;
+          $location.path('result');
+        }
+        self.index++;
+        self.testItem = quiz[self.index];
+      };
+      self.testItem = quiz[self.index]
+    });
+
     $rootScope.$on('$routeChangeStart', function () {
       $rootScope.loading = true;
     });
@@ -99,10 +105,9 @@ var app = angular.module('FunQuiz', [
   });
 
 
-  app.controller('ResultController', function ($rootScope, $scope, $routeParams, $location, dataService) {
+  app.controller('ResultController', function ($rootScope, $scope, $routeParams, $location, userService, quizService) {
     var self = this;
-    self.result = dataService.dataObj.reuslt;
-    console.log(dataService.dataObj);
+    self.result = quizService.score.reuslt;
     self.continuePlay = function () {
       $location.path('/test/1/');
     };
