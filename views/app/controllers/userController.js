@@ -1,5 +1,5 @@
 (function () {
-    app.controller('UserController', function ($rootScope, $scope, $location, userService, alertService) {
+    app.controller('UserController', function ($rootScope, $scope, $location, userService) {
         var self = this;
         self.beginTest = function () {
             $location.path('/test/1');

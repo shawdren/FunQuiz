@@ -17,21 +17,15 @@ var app = angular.module('FunQuiz', [
         $routeProvider.when('/test/:id', { templateUrl: 'test.html', reloadOnSearch: false, controller: 'TestController as testCtrl' });
         $routeProvider.when('/result', { templateUrl: 'result.html', reloadOnSearch: false, controller: 'ResultController as resultCtrl' });
         $routeProvider.when('/login', { templateUrl: 'login.html', reloadOnSearch: false, controller: 'UserController as userCtrl' });
-        $routeProvider.when('/alert', { templateUrl: 'alert.html', reloadOnSearch: false, controller: 'AlertController as alertCtrl' });
         $routeProvider.when('/quiz/add', { templateUrl: 'addquiz.html', reloadOnSearch: false, controller: 'QuizController as quizCtrl' });
         $routeProvider.when('/dashboard', { templateUrl: 'dashboard.html', reloadOnSearch: false, controller: 'UserController as userCtrl' });
         $routeProvider.when('/about', { templateUrl: 'about.html', reloadOnSearch: false });
     });
-    
+
     app.controller('IndexController', function ($rootScope, $scope, $routeParams, $location, userService) {
-        var self = this;
-        self.hello = 'hello';
-        self.user = userService.user;
-        // Needed for the loading screen
         $rootScope.$on('$routeChangeStart', function () {
             $rootScope.loading = true;
         });
-
         $rootScope.$on('$routeChangeSuccess', function () {
             $rootScope.loading = false;
         });
@@ -39,12 +33,10 @@ var app = angular.module('FunQuiz', [
 
     app.controller('MainController', function ($rootScope, $scope, $routeParams, $location, userService) {
         var self = this;
-        self.hello = 'hello';
         self.user = userService.user;
         self.beginTest = function () {
             $location.path('/test/1');
         };
-        console.log($routeParams);
         // Needed for the loading screen
         $rootScope.$on('$routeChangeStart', function () {
             $rootScope.loading = true;
@@ -57,9 +49,7 @@ var app = angular.module('FunQuiz', [
 
     app.controller('ListController', function ($rootScope, $scope, $routeParams) {
         var self = this;
-        // 
-        // 'Scroll' screen
-        // 
+
         var scrollItems = [''];
 
         if ($routeParams.type === '1') {
@@ -68,7 +58,7 @@ var app = angular.module('FunQuiz', [
         if ($routeParams.type === '2') {
             self.titleContent = '按标签';
         }
-       
+
         self.scrollItems = scrollItems;
         $scope.scrollItems = scrollItems;
         // Needed for the loading screen
@@ -88,6 +78,10 @@ var app = angular.module('FunQuiz', [
             var quiz = [];
             if (d.status.code === '200') {
                 quiz = d.data;
+            } else {
+                $scope.title = '提示';
+                $scope.message = d.status.message;
+                $rootScope.Ui.toggle('modal1');
             }
 
             self.index = 0;
