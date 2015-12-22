@@ -103,21 +103,10 @@ var app = angular.module('FunQuiz', [
                     $location.path('result');
                 }
                 self.index++;
-                var t = $transform.get(document.getElementById('transform'));
-                t.scaleX = 1.5;
-                t.scaleY = 1.5;
-                t.scaleZ = 1.5;
-                t.rotationZ += 30;
-                t.translateX += 10;
-                t.rotationZ -= 30;
-                t.translateX -= 10;
-                t.scaleX = 1;
-                t.scaleY = 1;
-                t.scaleZ = 1;
-                $transform.set(document.getElementById('transform'), t);
                 self.testItem = quiz[self.index];
             };
             self.testItem = quiz[self.index]
+            //$scope.testItem = (quiz[self.index]).shuffle();
         });
 
         $rootScope.$on('$routeChangeStart', function () {

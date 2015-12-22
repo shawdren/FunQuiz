@@ -31,7 +31,7 @@ exports.updateQuiz = function (quizId, isRight, callback) {
       quiz.right_count += 1;
     }
     quiz.quiz_count += 1;
-    quiz.rank = Math.round(quiz.right_count / quiz.quiz_count);
+    quiz.rank = Math.round(quiz.right_count / quiz.quiz_count * 100);
     quiz.update_at = new Date();
     quiz.save(callback);
   });

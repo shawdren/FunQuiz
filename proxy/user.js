@@ -28,7 +28,7 @@ exports.updateQuiz = function (email, isRight, callback) {
     }
     user.quiz_count += 1;
     user.score += 1;
-    user.level = Math.round(user.right_count / user.quiz_count);
+    user.level = Math.round(user.right_count / user.quiz_count * 100);
     user.save(callback);
   });
 };

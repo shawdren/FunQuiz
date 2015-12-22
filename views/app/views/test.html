@@ -1,20 +1,34 @@
 <div ui-content-for="title">
-  <span ng-bind="testCtrl.titleContent"></span>
+    <span ng-bind="testCtrl.titleContent"></span>
 </div>
 
 <div class="scrollable">
-  <div class="scrollable-content section">
+    <div class="scrollable-content section">
 
-    <fieldset>
-      <div class="transform" id="transform">
-        <legend ng-bind="testCtrl.testItem.quiz"></legend>
-        <div class="form-group has-success has-feedback">
-          <button ng-repeat="item in testCtrl.testItem.answer" ng-click="testCtrl.chooseAnwser(item,testCtrl.testItem,$scope)" class="form-control">
-            {{ item }}
-          </button>
-        </div>
-      </div>
-    </fieldset>
-    <hr>
-  </div>
+        <fieldset>
+            <div class="transform" id="transform">
+                <legend ng-bind="testCtrl.testItem.quiz"></legend>
+                <div class="form-group has-success has-feedback">
+                    <button ng-repeat="item in testCtrl.testItem.answer" ng-click="testCtrl.chooseAnwser(item,testCtrl.testItem,$scope)" class="form-control"
+                    ng-animate="{enter: 'example-repeat-enter',
+                      leave: 'example-repeat-leave',
+                      move: 'example-repeat-move'}">
+                        {{ item }}
+                    </button>
+                </div>
+                <div>
+                    <p>
+                        <label>总次数：{{testCtrl.testItem.quiz_count}}</label>
+                    </p>
+                    <p>
+                        <label>回答正确：{{testCtrl.testItem.right_count}}</label>
+                    </p>
+                    <p>
+                        <label>难度级别：{{testCtrl.testItem.rank}}</label>
+                    </p>
+                </div>
+            </div>
+        </fieldset>
+        <hr>
+    </div>
 </div>
