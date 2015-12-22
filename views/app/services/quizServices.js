@@ -3,13 +3,14 @@
         var self = this;
         self.sorce = { result: 0 };
         var baseHost = 'http://' + location.host;
-        self.add = function (quiz, answer, rightAnswer, category, tag, callback) {
+        self.add = function (quiz, answer, rightAnswer, category, tag, email, callback) {
             var data = {};
             data.quiz = quiz;
             data.answer = answer;
             data.rightAnswer = rightAnswer;
             data.category = category;
             data.tag = tag;
+            data.email = email;
             $http.post(baseHost + "/api/v1/quiz/add", data)
                 .success(function (quiz) {
                     self.quiz = quiz.data;

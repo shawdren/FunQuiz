@@ -1,5 +1,5 @@
 exports.require = function (filedName) {
-	var status = { code: '281', message: filedName + 'is required.' };
+	var status = { code: '281', message: filedName + ' 是必填字段.' };
 	return status;
 }
 

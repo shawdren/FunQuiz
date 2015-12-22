@@ -60,17 +60,15 @@ var app = angular.module('FunQuiz', [
         // 
         // 'Scroll' screen
         // 
-        var scrollItems = Categories;
+        var scrollItems = [''];
 
         if ($routeParams.type === '1') {
-            self.titleContent = '刷题';
+            self.titleContent = '按类别';
         }
         if ($routeParams.type === '2') {
-            self.titleContent = '出题';
+            self.titleContent = '按标签';
         }
-        if ($routeParams.type === '3') {
-            self.titleContent = '设置';
-        }
+       
         self.scrollItems = scrollItems;
         $scope.scrollItems = scrollItems;
         // Needed for the loading screen

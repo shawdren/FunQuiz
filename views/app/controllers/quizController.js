@@ -6,29 +6,29 @@
 		};
 		self.save = function () {
 			var answer = [];
-			if(self.answer1){
+			if (self.answer1) {
 				answer.push(self.answer1);
 			}
-			if(self.answer2){
+			if (self.answer2) {
 				answer.push(self.answer2);
 			}
-			if(self.answer3){
+			if (self.answer3) {
 				answer.push(self.answer3);
 			}
-			if(self.answer4){
+			if (self.answer4) {
 				answer.push(self.answer4);
 			}
-			quizService.add(self.quiz, answer, self.rightAnswer, self.category,self.tag, function (d) {
+			quizService.add(self.quiz, answer, self.rightAnswer, self.category, self.tag, userService.user.email, function (d) {
 				if (d.status.code === '200') {
 					self.reset();
 				} else {
-
+                    $scope.title = '提示';
+					$scope.message = d.status.message;
+					$rootScope.Ui.toggle('modal1');
 				}
 			});
 		};
-		self.update = function(quizId){
-			
-		};
+
 		self.reset = function () {
 			self.quiz = '';
 			self.answer1 = '';

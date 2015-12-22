@@ -16,6 +16,7 @@ var seq               = require('run-sequence');
 var csso              = require('gulp-csso');
 var concat            = require('gulp-concat');
 var uglify            = require('gulp-uglify');
+var exec = require('child_process').exec;
 
 var option = {base: 'views'};
 var dist = __dirname + '/dist';
@@ -212,3 +213,12 @@ gulp.task('testMongo',function(){
 gulp.task('getTank',function(){
     test.getTanks();
 });
+
+//others
+gulp.task('mongo', function (cb) {
+  exec('C:\Program Files\MongoDB\Server\3.0\bin\mongod', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+})

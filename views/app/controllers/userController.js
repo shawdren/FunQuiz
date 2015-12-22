@@ -7,35 +7,38 @@
         if (!userService.user.email) {
             $location.path('/login');
         };
+
         self.quiz_count = userService.user.quiz_count;
         self.right_count = userService.user.right_count;
         self.combo_count = userService.user.combo_count;
         self.score = userService.user.score;
         self.level = userService.user.level;
         self.email = userService.user.email;
+
         self.login = function () {
             userService.login(self.email, self.password, function (d) {
                 if (d.status.code === '200') {
                     $location.path('/dashboard');
                 } else {
-                    d.path = 'login';
-                    d.title = 'error';
-                    alertService.setData(d.status.message);
-                    //self.alert = "ui-turn-on='modal1'";
-                    //todo: if login has error should be pop up out.
+                    $scope.title = '提示';
+                    $scope.message = d.status.message;
+                    $rootScope.Ui.toggle('modal1');
                 }
             });
         };
         self.register = function () {
+            if (self.password && self.password !== self.confirmPassword) {
+                $scope.title = '提示';
+                $scope.message = '两次输入的密码不一致！';
+                $rootScope.Ui.toggle('modal1');
+            }
             userService.register(self.email, self.password, function (d) {
                 if (d.status.code === '200') {
                     $location.path('/dashboard');
                 } else {
-                    d.path = 'login';
-                    d.title = 'error';
-                    alertService.setData(d.status.message);
-                    //self.alert = "ui-turn-on='modal1'";
-                    //todo: if login has error should be pop up out.
+                    $scope.title = '提示';
+                    $scope.message = d.status.message;
+                    $rootScope.Ui.toggle('modal1');
                 }
             });
         };

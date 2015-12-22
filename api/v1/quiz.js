@@ -31,6 +31,9 @@ exports.getAll = function (req, res, next) {
 
 var add = function (req, res, next) {
   var d = {};
+  if(req.body.email !== 'jl_lsj@163.com'){
+    res.send(help.fail('您的权限不够，不能添加问题！'));
+  }
   if (help.isEmpty(req.body.quiz)) {
     res.send(help.require('quiz'));
   }

@@ -10,12 +10,12 @@
         <legend>我来出题</legend>
         <div class="form-group has-success has-feedback">
           <label>问题</label>
-          <input type="text" ng-model="quizCtrl.quiz" class="form-control" placeholder="输入问题">
+          <input type="text" ng-model="quizCtrl.quiz" class="form-control" placeholder="输入问题" required="true">
         </div>
 
         <div class="form-group has-success has-feedback">
           <label>答案</label>
-          <input type="text" ng-model="quizCtrl.answer1" class="form-control" placeholder="输入答案">
+          <input type="text" ng-model="quizCtrl.answer1" class="form-control" placeholder="输入答案" required="true">
           <input type="text" ng-model="quizCtrl.answer2" class="form-control" placeholder="输入答案">
           <input type="text" ng-model="quizCtrl.answer3" class="form-control" placeholder="输入答案">
           <input type="text" ng-model="quizCtrl.answer4" class="form-control" placeholder="输入答案">
@@ -23,7 +23,7 @@
 
         <div class="form-group has-success has-feedback">
           <label>正确答案</label>
-          <input type="text" ng-model="quizCtrl.rightAnswer" class="form-control" placeholder="输入答案">
+          <input type="text" ng-model="quizCtrl.rightAnswer" class="form-control" placeholder="输入答案" required="true">
         </div>
         <div class="form-group has-success has-feedback">
           <label>标签</label>
