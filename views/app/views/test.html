@@ -6,11 +6,13 @@
   <div class="scrollable-content section">
 
     <fieldset>
-      <legend ng-bind="testCtrl.testItem.question"></legend>
-      <div class="form-group has-success has-feedback">
-        <button ng-repeat="item in testCtrl.testItem.answer" ng-click="testCtrl.chooseAnwser(item,testCtrl.testItem,$scope)" class="form-control">
-          {{ item }}
-        </button>
+      <div class="transform" id="transform">
+        <legend ng-bind="testCtrl.testItem.quiz"></legend>
+        <div class="form-group has-success has-feedback">
+          <button ng-repeat="item in testCtrl.testItem.answer" ng-click="testCtrl.chooseAnwser(item,testCtrl.testItem,$scope)" class="form-control">
+            {{ item }}
+          </button>
+        </div>
       </div>
     </fieldset>
     <hr>
