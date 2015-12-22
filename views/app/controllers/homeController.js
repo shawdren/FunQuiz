@@ -22,10 +22,24 @@ var app = angular.module('FunQuiz', [
         $routeProvider.when('/dashboard', { templateUrl: 'dashboard.html', reloadOnSearch: false, controller: 'UserController as userCtrl' });
         $routeProvider.when('/about', { templateUrl: 'about.html', reloadOnSearch: false });
     });
+    
+    app.controller('IndexController', function ($rootScope, $scope, $routeParams, $location, userService) {
+        var self = this;
+        self.hello = 'hello';
+        self.user = userService.user;
+        // Needed for the loading screen
+        $rootScope.$on('$routeChangeStart', function () {
+            $rootScope.loading = true;
+        });
 
+        $rootScope.$on('$routeChangeSuccess', function () {
+            $rootScope.loading = false;
+        });
+    });
 
     app.controller('MainController', function ($rootScope, $scope, $routeParams, $location, userService) {
         var self = this;
+        self.hello = 'hello';
         self.user = userService.user;
         self.beginTest = function () {
             $location.path('/test/1');
