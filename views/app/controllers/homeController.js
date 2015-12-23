@@ -96,9 +96,10 @@ var app = angular.module('FunQuiz', [
                 if (userService.user.email) {
                     userService.updateQuiz(userService.user.email, isRight, function (d) { });
                 };
+                
                 if (self.index === quiz.length - 1) {
                     var score = {};
-                    score.reuslt = self.result;
+                    score.result = self.result;
                     quizService.score = score;
                     $location.path('result');
                 }
@@ -125,7 +126,7 @@ var app = angular.module('FunQuiz', [
         if (!quizService.score) {
             $location.path('/test/1/');
         }
-        self.result = quizService.score.reuslt;
+        self.result = quizService.score.result;
         self.continuePlay = function () {
             $location.path('/test/1/');
         };

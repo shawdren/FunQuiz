@@ -201,7 +201,7 @@ gulp.task('clean', function (cb) {
 });
 
 gulp.task('build', function(done) {
-  seq( 'fonts', ['css',  'js'], done);
+  seq('fonts', [ 'css',  'js'], done);
 });
 
 

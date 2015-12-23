@@ -9,7 +9,7 @@
 			if (self.answer1) {
 				answer.push(self.answer1);
 			}
-			if (self.answer2 && self.answer2 !==self.answer1) {
+			if (self.answer2 && self.answer2 !== self.answer1) {
 				answer.push(self.answer2);
 			}
 			if (self.answer3 && self.answer3 !== self.answer2) {
@@ -37,7 +37,44 @@
 			self.answer4 = '';
 			self.rightAnswer = '';
 			self.category = '';
-			self.tag = '';
+		};
+	});
+	app.animation('.repeat-animation', function () {
+		return {
+			enter: function (element, done) {
+				console.log("entering...");
+				var width = element.width();
+				element.css({
+					position: 'relative',
+					left: -10,
+					opacity: 0
+				});
+				element.animate({
+					left: 0,
+					opacity: 1
+				}, done);
+			},
+			leave: function (element, done) {
+				element.css({
+					position: 'relative',
+					left: 0,
+					opacity: 1
+				});
+				element.animate({
+					left: -10,
+					opacity: 0
+				}, done);
+			},
+			move: function (element, done) {
+				element.css({
+					left: "2px",
+					opacity: 0.5
+				});
+				element.animate({
+					left: "0px",
+					opacity: 1
+				}, done);
+			}
 		};
 	});
 })();
