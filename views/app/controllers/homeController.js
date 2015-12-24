@@ -91,16 +91,16 @@ var app = angular.module('FunQuiz', [
                 if (x == y.right_answer) {
                     self.result++;
                     isRight = true;
+                    quizService.score.combo += 1;
                 }
+                quizService.score.combo = 0;
                 quizService.updateQuiz(y._id, isRight, function (d) { });
                 if (userService.user.email) {
                     userService.updateQuiz(userService.user.email, isRight, function (d) { });
                 };
-                
+
                 if (self.index === quiz.length - 1) {
-                    var score = {};
-                    score.result = self.result;
-                    quizService.score = score;
+                    quizService.score.result = self.result;
                     $location.path('result');
                 }
                 self.index++;

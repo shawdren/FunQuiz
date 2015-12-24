@@ -6,14 +6,18 @@
         };
         if (!userService.user.email) {
             $location.path('/login');
-        };
+        } else {
+            userService.getUser(userService.user.email, function (user) {
+                self.quiz_count = user.data.quiz_count;
+                self.right_count = user.data.right_count;
+                self.combo_count = user.data.combo_count;
+                self.score = user.data.score;
+                self.level = user.data.level;
+                self.email = user.data.email;
+            });
+        }
 
-        self.quiz_count = userService.user.quiz_count;
-        self.right_count = userService.user.right_count;
-        self.combo_count = userService.user.combo_count;
-        self.score = userService.user.score;
-        self.level = userService.user.level;
-        self.email = userService.user.email;
+
 
         self.login = function () {
             userService.login(self.email, self.password, function (d) {

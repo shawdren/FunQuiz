@@ -5,7 +5,7 @@ var config            = require('../config');
 
 var router            = express.Router();
 
-router.get('/user', apiUser.show);
+router.post('/user', apiUser.get);
 router.post('/user/login', apiUser.login);
 router.post('/user/register', apiUser.register);
 router.post('/user/updatequiz', apiUser.updateQuiz);
