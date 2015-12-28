@@ -39,11 +39,10 @@
 			self.category = '';
 		};
 	});
-	app.animation('.repeat-animation', function () {
+	app.animation('.repeat-animation1', function () {
 		return {
 			enter: function (element, done) {
 				console.log("entering...");
-				var width = element.width();
 				element.css({
 					position: 'relative',
 					left: -10,

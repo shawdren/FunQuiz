@@ -1,5 +1,6 @@
 var app = angular.module('FunQuiz', [
     'ngRoute',
+    'ngAnimate',
     'mobile-angular-ui',
     'mobile-angular-ui.gestures',
     'mobile-angular-ui.core.sharedState'

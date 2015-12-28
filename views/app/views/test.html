@@ -6,17 +6,14 @@
     <div class="scrollable-content section">
 
         <fieldset>
-            <div class="repeat-animation" id="transform" >
+            <div class="" id="transform">
                 <legend ng-bind="testCtrl.testItem.quiz"></legend>
-                <div class="form-group has-success has-feedback">
-                    <button ng-repeat="item in testCtrl.testItem.answer" ng-click="testCtrl.chooseAnwser(item,testCtrl.testItem,$scope)" class="form-control"
-                    ng-animate="{enter: 'example-repeat-enter',
-                      leave: 'example-repeat-leave',
-                      move: 'example-repeat-move'}">
+                <div class="form-group has-success has-feedback repeat-animation" ng-repeat="item in testCtrl.testItem.answer">
+                    <button ng-click="testCtrl.chooseAnwser(item,testCtrl.testItem,$scope)" class="form-control">
                         {{ item }}
                     </button>
                 </div>
-                <div>
+                <div class="repeat-animation">
                     <p>
                         <label>总次数：{{testCtrl.testItem.quiz_count}}</label>
                     </p>
