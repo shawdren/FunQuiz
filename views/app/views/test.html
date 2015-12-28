@@ -8,7 +8,7 @@
         <fieldset>
             <div class="" id="transform">
                 <legend ng-bind="testCtrl.testItem.quiz"></legend>
-                <div class="form-group has-success has-feedback repeat-animation" ng-repeat="item in testCtrl.testItem.answer">
+                <div class="form-group has-success has-feedback repeat-animation hide-fade" ng-repeat="item in testCtrl.testItem.answer">
                     <button ng-click="testCtrl.chooseAnwser(item,testCtrl.testItem,$scope)" class="form-control">
                         {{ item }}
                     </button>
