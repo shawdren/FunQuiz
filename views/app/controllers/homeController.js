@@ -102,6 +102,7 @@ var app = angular.module('FunQuiz', [
 
                 if (self.index === quiz.length - 1) {
                     quizService.score.result = self.result;
+                    quizService.score.count = self.index;
                     $location.path('result');
                 }
                 self.index++;

@@ -1,7 +1,7 @@
 (function () {
     app.factory('quizService', function ($http) {
         var self = this;
-        self.score = { result: 0,combo:0 };
+        self.score = { result: 0, combo: 0, count: 0 };
         var baseHost = 'http://' + location.host;
         self.add = function (quiz, answer, rightAnswer, category, tag, email, callback) {
             var data = {};

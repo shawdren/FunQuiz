@@ -1,20 +1,27 @@
 ﻿<div ui-content-for="title">
-  <span>本轮成绩</span>
+    <span>本轮成绩</span>
 </div>
 
 <div class="scrollable">
- <div class="scrollable-content section">
-    <fieldset>
-      <legend>成绩</legend>
-        <div class="form-group has-success has-feedback">
-          <p><label>您共答对 {{resultCtrl.result}} 题</label></p>
-          <p><label>最大连击 {{resultCtrl.result}} 次</label></p>
-        </div>
-    </fieldset>
-    <hr>
-	<button ng-click="resultCtrl.continuePlay()" class="form-control">
-	    继续答题
-    </button>
+    <div class="scrollable-content section">
+        <fieldset>
+            <legend>成绩</legend>
+            <div class="form-group has-success has-feedback">
+                <p>
+                    <label>您共答题 {{resultCtrl.result}} 道</label>
+                </p>
+                <p>
+                    <label>答对题 {{resultCtrl.result}} 道</label>
+                </p>
+                <p>
+                    <label>最大连击 {{resultCtrl.result}} 次</label>
+                </p>
+            </div>
+        </fieldset>
+        <hr>
+        <button ng-click="resultCtrl.continuePlay()" class="form-control">
+            继续答题
+        </button>
 
- </div>
+    </div>
 </div>

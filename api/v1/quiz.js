@@ -26,7 +26,7 @@ exports.getAll = function (req, res, next) {
     d.data = quiz;
     res.send(d);
   });
-};;
+};
 
 
 var add = function (req, res, next) {
