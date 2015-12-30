@@ -18,15 +18,16 @@ exports.getCategory = function (query, callback) {
         var category = [];
         category.push('无分类');
         _.forEach(quiz, function (d) {
-            if (d._doc.tag !== null && d._doc.tag !== '' && d._doc.tag !== undefined) {
+            if (d._doc.tag !== null && d._doc.tag !== '' && d._doc.tag !== undefined
+                && tag.indexOf(d._doc.tag) === -1) {
                 tag.push(d._doc.tag);
             }
-            if (d._doc.category !== null && d._doc.category !== '' && d._doc.category !== undefined) {
+            if (d._doc.category !== null && d._doc.category !== '' && d._doc.category !== undefined
+                && category.indexOf(d._doc.category) === -1) {
                 category.push(d._doc.category);
             }
         });
-        _.difference(tag, tag);
-        _.difference(category, category);
+
         data.tag = tag;
         data.category = category;
         callback(err, data);
@@ -42,7 +43,7 @@ exports.getAll = function (query, callback) {
     } else {
         filter = JSON.parse(query.filter);
     }
-    
+
     Quiz.find(filter, null, { sort: '-create_at' }, callback);
 };
 
