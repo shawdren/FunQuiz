@@ -2,7 +2,7 @@
     app.controller('UserController', function ($rootScope, $scope, $location, userService) {
         var self = this;
         self.beginTest = function () {
-            $location.path('/test/1');
+            $location.path('/test/last/1');
         };
         if (!userService.user.email) {
             $location.path('/login');
