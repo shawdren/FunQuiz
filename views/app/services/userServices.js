@@ -43,10 +43,11 @@
                 });
 
         };
-        self.updateQuiz = function (email, isRight, callback) {
+        self.updateQuiz = function (email, isRight, combo, callback) {
             var data = {};
             data.email = email;
             data.isRight = isRight;
+            data.combo = combo;
             $http.post(baseHost + "/api/v1/user/updatequiz", data)
                 .success(function (quiz) {
                     self.quiz = quiz.data;

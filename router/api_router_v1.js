@@ -12,6 +12,7 @@ router.post('/user/updatequiz', apiUser.updateQuiz);
 
 router.get('/quiz/get', apiQuiz.get);
 router.get('/quiz/getall', apiQuiz.getAll);
+router.get('/quiz/category', apiQuiz.category);
 router.post('/quiz/add', apiQuiz.add);
 router.post('/quiz/updatequiz', apiQuiz.updateQuiz);
 

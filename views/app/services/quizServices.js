@@ -1,8 +1,23 @@
 (function () {
     app.factory('quizService', function ($http) {
         var self = this;
-        self.score = { result: 0, combo: 0, count: 0 };
         var baseHost = 'http://' + location.host;
+        
+        self.score = { result: 0, combo: 0, count: 0 };
+        self.category = function (callback) {
+            var data = {};
+            var category = {};
+            if (category.length !== 0) {
+                $http.get(baseHost + "/api/v1/quiz/category", data)
+                    .success(function (quiz) {
+                        callback(quiz);
+                    })
+                    .error(function (quiz) {
+                        console.error("Failed to get.");
+                    });
+            }
+        };
+        
         self.add = function (quiz, answer, rightAnswer, category, tag, email, callback) {
             var data = {};
             data.quiz = quiz;

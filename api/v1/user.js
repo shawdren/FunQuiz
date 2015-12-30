@@ -75,7 +75,7 @@ exports.updateQuiz = function (req, res, next) {
     if (help.isEmpty(req.body.email)) {
         res.send(help.require('email'));
     }
-    userProxy.updateQuiz(req.body.email, req.body.isRight, function (err, quiz) {
+    userProxy.updateQuiz(req.body.email, req.body.isRight, req.body.combo, function (err, quiz) {
         if (err != null) {
             d.status = help.fail(err);
         }

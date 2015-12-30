@@ -48,28 +48,32 @@ var app = angular.module('FunQuiz', [
         });
     });
 
-    app.controller('ListController', function ($rootScope, $scope, $routeParams) {
+    app.controller('ListController', function ($rootScope, $scope, $routeParams, userService, quizService) {
         var self = this;
+        quizService.category(function (data) {
 
-        var scrollItems = [''];
+            if ($routeParams.type === '1') {
+                self.titleContent = '按类别';
+                self.scrollItems = data.data.category;
+                $scope.scrollItems= data.data.category;
+            }
+            if ($routeParams.type === '2') {
+                self.titleContent = '按标签';
+                self.scrollItems = data.data.tag;
+                 $scope.scrollItems= data.data.tag;
+            }
 
-        if ($routeParams.type === '1') {
-            self.titleContent = '按类别';
-        }
-        if ($routeParams.type === '2') {
-            self.titleContent = '按标签';
-        }
+            // Needed for the loading screen
+            $rootScope.$on('$routeChangeStart', function () {
+                $rootScope.loading = true;
+            });
 
-        self.scrollItems = scrollItems;
-        $scope.scrollItems = scrollItems;
-        // Needed for the loading screen
-        $rootScope.$on('$routeChangeStart', function () {
-            $rootScope.loading = true;
+            $rootScope.$on('$routeChangeSuccess', function () {
+                $rootScope.loading = false;
+            });
         });
 
-        $rootScope.$on('$routeChangeSuccess', function () {
-            $rootScope.loading = false;
-        });
+
     });
 
     app.controller('TestController', function ($rootScope, $scope, $routeParams, $location, $transform, userService, quizService) {
@@ -93,11 +97,12 @@ var app = angular.module('FunQuiz', [
                     self.result++;
                     isRight = true;
                     quizService.score.combo += 1;
+                } else {
+                    quizService.score.combo = 0;
                 }
-                quizService.score.combo = 0;
                 quizService.updateQuiz(y._id, isRight, function (d) { });
                 if (userService.user.email) {
-                    userService.updateQuiz(userService.user.email, isRight, function (d) { });
+                    userService.updateQuiz(userService.user.email, isRight, quizService.score.combo, function (d) { });
                 };
 
                 if (self.index === quiz.length - 1) {

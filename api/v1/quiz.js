@@ -5,69 +5,81 @@ var help = require('../../common/helper');
 
 
 exports.get = function (req, res, next) {
-  var d = {};
-  quizProxy.getQuiz(req.body.query, function (err, quiz) {
-    if (err != null) {
-      d.status = help.fail(err);
-    }
-    d.status = help.success();
-    d.data = quiz;
-    res.send(d);
-  });
+    var d = {};
+    quizProxy.getQuiz(req.body.query, function (err, quiz) {
+        if (err != null) {
+            d.status = help.fail(err);
+        }
+        d.status = help.success();
+        d.data = quiz;
+        res.send(d);
+    });
+};
+
+exports.category = function (req, res, next) {
+    var d = {};
+    quizProxy.getCategory(req.body.query, function (err, quiz) {
+        if (err != null) {
+            d.status = help.fail(err);
+        }
+        d.status = help.success();
+        d.data = quiz;
+        res.send(d);
+    });
 };
 
 exports.getAll = function (req, res, next) {
-  var d = {};
-  quizProxy.getAll(req.body.query, function (err, quiz) {
-    if (err != null) {
-      d.status = help.fail(err);
-    }
-    d.status = help.success();
-    d.data = quiz;
-    res.send(d);
-  });
+    var d = {};
+    quizProxy.getAll(req.body.query, function (err, quiz) {
+        if (err != null) {
+            d.status = help.fail(err);
+        }
+        d.status = help.success();
+        d.data = quiz;
+        res.send(d);
+    });
 };
 
 
 var add = function (req, res, next) {
-  var d = {};
-  if(req.body.email !== 'jl_lsj@163.com'){
-    res.send(help.fail('您的权限不够，不能添加问题！'));
-  }
-  if (help.isEmpty(req.body.quiz)) {
-    res.send(help.require('quiz'));
-  }
-  if (req.body.answer.length == 0) {
-    res.send(help.require('answer'));
-  }
-  if (help.isEmpty(req.body.rightAnswer)) {
-    res.send(help.require('right answer'));
-  }
-  quizProxy.addQuiz(req.body.quiz, req.body.answer, req.body.rightAnswer, req.body.category, req.body.tag, function (err, quiz) {
-    if (err != null) {
-      d.status = help.fail(err);
-      res.send(d);
-      return;
+    var d = {};
+    if (req.body.email !== 'jl_lsj@163.com') {
+        res.send(help.fail('您的权限不够，不能添加问题！'));
     }
-    d.status = help.success();
-    d.data = quiz;
-    res.send(d);
-  });
+    if (help.isEmpty(req.body.quiz)) {
+        res.send(help.require('quiz'));
+    }
+    if (req.body.answer.length == 0) {
+        res.send(help.require('answer'));
+    }
+    if (help.isEmpty(req.body.rightAnswer)) {
+        res.send(help.require('right answer'));
+    }
+    quizProxy.addQuiz(req.body.quiz, req.body.answer, req.body.rightAnswer, req.body.category, req.body.tag, function (err, quiz) {
+        if (err != null) {
+            d.status = help.fail(err);
+            res.send(d);
+            return;
+        }
+        d.status = help.success();
+        d.data = quiz;
+        res.send(d);
+    });
 };
 
 exports.add = add;
 
 exports.updateQuiz = function (req, res, next) {
-  var d = {};
-  if (help.isEmpty(req.body.quizId)) {
-    res.send(help.require('quizId'));
-  }
-  quizProxy.updateQuiz(req.body.quizId,req.body.isRight, function (err, quiz) {
-    if (err != null) {
-      d.status = help.fail(err);
+    var d = {};
+    if (help.isEmpty(req.body.quizId)) {
+        res.send(help.require('quizId'));
     }
-    d.status = help.success();
-    d.data = quiz;
-    res.send(d);
-  });
+    quizProxy.updateQuiz(req.body.quizId, req.body.isRight, function (err, quiz) {
+        if (err != null) {
+            d.status = help.fail(err);
+        }
+        d.status = help.success();
+        d.data = quiz;
+        res.send(d);
+    });
 };
