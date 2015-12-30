@@ -25,12 +25,12 @@ exports.updateQuiz = function (email, isRight, combo, callback) {
         }
         if (isRight) {
             user.right_count += 1;
+            user.score += 1;
         }
         if (user.combo_count <= combo) {
             user.combo_count = combo;
         }
         user.quiz_count += 1;
-        user.score += 1;
         user.level = Math.round(user.right_count / user.quiz_count * 100);
         user.save(callback);
     });
