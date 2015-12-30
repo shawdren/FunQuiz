@@ -35,7 +35,15 @@ exports.getCategory = function (query, callback) {
 
 
 exports.getAll = function (query, callback) {
-    Quiz.find(query, '', {}, callback);
+    var filter = undefined;
+    var orderby = undefined;
+    if (query.filter.indexOf('无标签') || query.filter.indexOf('无分类')) {
+        filter = undefined;
+    } else {
+        filter = JSON.parse(query.filter);
+    }
+    
+    Quiz.find(filter, null, { sort: '-create_at' }, callback);
 };
 
 exports.addQuiz = function (quiz, answer, rightAnswer, category, tag, callback) {

@@ -30,7 +30,7 @@ exports.category = function (req, res, next) {
 
 exports.getAll = function (req, res, next) {
     var d = {};
-    quizProxy.getAll(req.body.query, function (err, quiz) {
+    quizProxy.getAll(req.query, function (err, quiz) {
         if (err != null) {
             d.status = help.fail(err);
         }

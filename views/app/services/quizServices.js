@@ -2,7 +2,7 @@
     app.factory('quizService', function ($http) {
         var self = this;
         var baseHost = 'http://' + location.host;
-        
+
         self.score = { result: 0, combo: 0, count: 0 };
         self.category = function (callback) {
             var data = {};
@@ -17,7 +17,7 @@
                     });
             }
         };
-        
+
         self.add = function (quiz, answer, rightAnswer, category, tag, email, callback) {
             var data = {};
             data.quiz = quiz;
@@ -53,7 +53,7 @@
         self.getQuiz = function (query, callback) {
             var data = {};
             data.query = query;
-            $http.get(baseHost + "/api/v1/quiz/getall", data)
+            $http.get(baseHost + "/api/v1/quiz/getall?filter=" + JSON.stringify(data.query), data)
                 .success(function (quiz) {
                     self.quiz = quiz.data;
                     callback(quiz);

@@ -15,7 +15,7 @@ var app = angular.module('FunQuiz', [
         $routeProvider.when('/', { templateUrl: 'home.html', reloadOnSearch: false, controller: 'MainController as homeCtrl' });
         $routeProvider.when('/home', { templateUrl: 'home.html', reloadOnSearch: false, controller: 'MainController as homeCtrl' });
         $routeProvider.when('/list/:type', { templateUrl: 'category.html', reloadOnSearch: false, controller: 'ListController as listCtrl' });
-        $routeProvider.when('/test/:id', { templateUrl: 'test.html', reloadOnSearch: false, controller: 'TestController as testCtrl' });
+        $routeProvider.when('/test/:type/:id', { templateUrl: 'test.html', reloadOnSearch: false, controller: 'TestController as testCtrl' });
         $routeProvider.when('/result', { templateUrl: 'result.html', reloadOnSearch: false, controller: 'ResultController as resultCtrl' });
         $routeProvider.when('/login', { templateUrl: 'login.html', reloadOnSearch: false, controller: 'UserController as userCtrl' });
         $routeProvider.when('/quiz/add', { templateUrl: 'addquiz.html', reloadOnSearch: false, controller: 'QuizController as quizCtrl' });
@@ -36,7 +36,7 @@ var app = angular.module('FunQuiz', [
         var self = this;
         self.user = userService.user;
         self.beginTest = function () {
-            $location.path('/test/1');
+            $location.path('/test/last/1');
         };
         // Needed for the loading screen
         $rootScope.$on('$routeChangeStart', function () {
@@ -51,13 +51,12 @@ var app = angular.module('FunQuiz', [
     app.controller('ListController', function ($rootScope, $scope, $routeParams, userService, quizService) {
         var self = this;
         quizService.category(function (data) {
-
-            if ($routeParams.type === '1') {
+            self.type = $routeParams.type;
+            if ($routeParams.type === 'category') {
                 self.titleContent = '按类别';
                 self.scrollItems = data.data.category;
                 $scope.scrollItems= data.data.category;
-            }
-            if ($routeParams.type === '2') {
+            }else if ($routeParams.type === 'tag') {
                 self.titleContent = '按标签';
                 self.scrollItems = data.data.tag;
                  $scope.scrollItems= data.data.tag;
@@ -79,7 +78,9 @@ var app = angular.module('FunQuiz', [
     app.controller('TestController', function ($rootScope, $scope, $routeParams, $location, $transform, userService, quizService) {
         var self = this;
         self.titleContent = '请选择一个答案';
-        quizService.getQuiz({}, function (d) {
+        var filter = {};
+        filter[$routeParams.type] = $routeParams.id; 
+        quizService.getQuiz(filter, function (d) {
             var quiz = [];
             if (d.status.code === '200') {
                 quiz = d.data;
@@ -131,11 +132,11 @@ var app = angular.module('FunQuiz', [
         var self = this;
 
         if (!quizService.score) {
-            $location.path('/test/1/');
+            $location.path('/test/last/1');
         }
         self.result = quizService.score.result;
         self.continuePlay = function () {
-            $location.path('/test/1/');
+            $location.path('/test/last/1');
         };
         // Needed for the loading screen
         $rootScope.$on('$routeChangeStart', function () {
