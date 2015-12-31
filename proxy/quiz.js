@@ -37,8 +37,7 @@ exports.getCategory = function (query, callback) {
 
 exports.getAll = function (query, callback) {
     var filter = undefined;
-    var orderby = undefined;
-    if (query.filter.indexOf('无标签') || query.filter.indexOf('无分类')) {
+    if (query.filter.indexOf('无标签') !== -1 || query.filter.indexOf('无分类') !== -1) {
         filter = undefined;
     } else {
         filter = JSON.parse(query.filter);
