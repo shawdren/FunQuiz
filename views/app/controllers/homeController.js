@@ -100,7 +100,7 @@ var app = angular.module('FunQuiz', [
                     isRight = true;
                     quizService.score.combo += 1;
                 } else {
-                    quizService.score.combo = 1;
+                    quizService.score.combo = 0;
                 }
 
                 self.combo = quizService.score.combo;
