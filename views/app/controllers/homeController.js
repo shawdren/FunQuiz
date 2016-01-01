@@ -55,11 +55,11 @@ var app = angular.module('FunQuiz', [
             if ($routeParams.type === 'category') {
                 self.titleContent = '按类别';
                 self.scrollItems = data.data.category;
-                $scope.scrollItems= data.data.category;
-            }else if ($routeParams.type === 'tag') {
+                $scope.scrollItems = data.data.category;
+            } else if ($routeParams.type === 'tag') {
                 self.titleContent = '按标签';
                 self.scrollItems = data.data.tag;
-                 $scope.scrollItems= data.data.tag;
+                $scope.scrollItems = data.data.tag;
             }
 
             // Needed for the loading screen
@@ -79,7 +79,7 @@ var app = angular.module('FunQuiz', [
         var self = this;
         self.titleContent = '请选择一个答案';
         var filter = {};
-        filter[$routeParams.type] = $routeParams.id; 
+        filter[$routeParams.type] = $routeParams.id;
         quizService.getQuiz(filter, function (d) {
             var quiz = [];
             if (d.status.code === '200') {
@@ -92,6 +92,7 @@ var app = angular.module('FunQuiz', [
 
             self.index = 0;
             self.result = 0;
+            self.combo = 0;
             self.chooseAnwser = function (x, y, z) {
                 var isRight = false;
                 if (x == y.right_answer) {
@@ -99,8 +100,10 @@ var app = angular.module('FunQuiz', [
                     isRight = true;
                     quizService.score.combo += 1;
                 } else {
-                    quizService.score.combo = 0;
+                    quizService.score.combo = 1;
                 }
+
+                self.combo = quizService.score.combo;
                 quizService.updateQuiz(y._id, isRight, function (d) { });
                 if (userService.user.email) {
                     userService.updateQuiz(userService.user.email, isRight, quizService.score.combo, function (d) { });
